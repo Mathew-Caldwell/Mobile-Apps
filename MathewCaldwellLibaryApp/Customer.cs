@@ -4,7 +4,12 @@ using System.Text;
 
 namespace MathewCaldwellLibaryApp
 {
-    internal class Customer
+    public class Customer
     {
+        public int ID;
+        public string name = "";
+        public string address = "";
+        public string email = "";
+        public int phoneNumber;
     }
 }

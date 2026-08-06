@@ -4,7 +4,14 @@ using System.Text;
 
 namespace MathewCaldwellLibaryApp
 {
-    internal class Book
+    public class Book
     {
+        public int ID;
+        public string title = "";
+        public string author = "";
+        public int yearPublished;
+        public DateOnly dueDate;
+        public string customerWithBook = "";
+        public Status status;
     }
 }
