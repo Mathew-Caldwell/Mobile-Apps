@@ -10,7 +10,13 @@ namespace MathewCaldwellExerciseTracker
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            changeMinPerDay.Value = 30;
+            //load();
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            //save();
         }
 
         private void Back_Clicked(object sender, EventArgs e)
