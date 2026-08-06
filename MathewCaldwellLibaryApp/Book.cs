@@ -11,7 +11,7 @@ namespace MathewCaldwellLibaryApp
         public string author = "";
         public int yearPublished;
         public DateOnly dueDate;
-        public string customerWithBook = "";
+        public string customerWithBook = "Libary";
         public Status status;
 
         public Book(int ID, string title, string author, int yearPublished, DateOnly dueDate, string customerWithBook, Status status)

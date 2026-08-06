@@ -29,7 +29,7 @@ namespace MathewCaldwellLibaryApp
         public void AddBook(string bookName, string author, int yearPublished, DateOnly dueDate)
         {
             int ID = masterBooKList.Count + 1;
-            Book book = new Book(ID, bookName, author, yearPublished, dueDate, "", Status.available);
+            Book book = new Book(ID, bookName, author, yearPublished, dueDate, "Libary", Status.available);
 
             masterBooKList.Add(book);
         }
@@ -48,7 +48,7 @@ namespace MathewCaldwellLibaryApp
             book.customerWithBook = customerName;
         }
 
-        public void ReturnBook(int bookID, string customerName)
+        public void ReturnBook(int bookID)
         {
             Book book = masterBooKList[0];
             for (int i = 0; i < masterBooKList.Count; i++)
@@ -59,7 +59,7 @@ namespace MathewCaldwellLibaryApp
                 }
             }
             book.status = Status.available;
-            book.customerWithBook = "";
+            book.customerWithBook = "Libary";
         }
 
         public void ReserveBook(int bookID, string customerName)
@@ -86,7 +86,7 @@ namespace MathewCaldwellLibaryApp
                     book = masterBooKList[i];
                 }
             }
-            book.status = Status.reserved;
+            book.status = Status.lost;
         }
         
     }
