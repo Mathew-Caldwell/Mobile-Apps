@@ -1,5 +1,4 @@
-﻿using MetalPerformanceShaders;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Text;
@@ -8,8 +7,8 @@ namespace MathewCaldwellLibaryApp
 {
     public class Libary
     {
-        List<Book> masterBooKList = new List<Book>();
-        List<Customer> masterCustomerList = new List<Customer>();
+        public List<Book> masterBooKList = new List<Book>();
+        public List<Customer> masterCustomerList = new List<Customer>();
         string name = "";
         string address = "";
 
@@ -19,18 +18,18 @@ namespace MathewCaldwellLibaryApp
             this.address = address;
         }
 
-        public void AddCustomer(string name, string address, string email, int phoneNumber)
+        public void AddCustomer(string customerName, string customerAddress, string email, int phoneNumber)
         {
-            int ID = 0;
-            Customer customer = new Customer(ID, this.name, this.address, email, phoneNumber);
+            int ID = masterCustomerList.Count + 1;
+            Customer customer = new Customer(ID, customerName, customerAddress, email, phoneNumber);
 
             masterCustomerList.Add(customer);
         }
 
-        public void AddBook(string name, string author, int yearPublished, DateOnly dueDate, string customerWithBook, Status status)
+        public void AddBook(string bookName, string author, int yearPublished, DateOnly dueDate)
         {
-            int ID = 0;
-            Book book = new Book(ID, this.name, author, yearPublished, dueDate, customerWithBook, status);
+            int ID = masterBooKList.Count + 1;
+            Book book = new Book(ID, bookName, author, yearPublished, dueDate, "", Status.available);
 
             masterBooKList.Add(book);
         }
