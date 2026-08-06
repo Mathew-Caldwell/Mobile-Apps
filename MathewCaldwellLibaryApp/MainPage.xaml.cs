@@ -6,6 +6,8 @@
         public MainPage()
         {
             InitializeComponent();
+
+            Libary libary = new Libary("name", "address");
         }
 
         
