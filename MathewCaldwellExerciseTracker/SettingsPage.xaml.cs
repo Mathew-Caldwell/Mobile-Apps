@@ -10,7 +10,6 @@ namespace MathewCaldwellExerciseTracker
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            //load();
         }
 
         protected override void OnDisappearing()

@@ -6,7 +6,7 @@
     <ScrollView>
         <VerticalStackLayout>
             <Button Text="Settings" Clicked="Setting_Clicked"/>
-            <Label Text="X minutes today"/>
+            <Label Text="X minutes today" x:Name="MinutesToday"/>
             <Entry Placeholder="log number of minutes" x:Name="logEntry"/>
             <Button Text="log" Clicked="Log_Clicked"/>
             <Label Text="Need to do X min of exercise per day"/>

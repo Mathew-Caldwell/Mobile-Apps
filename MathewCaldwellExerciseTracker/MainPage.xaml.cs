@@ -4,17 +4,19 @@
     
     public partial class MainPage : ContentPage
     {
+        ExerciseData exersiceData = new ExerciseData();
+
         public MainPage()
         {
             InitializeComponent();
-            //load();
+            exersiceData.load();
             UpdateAll();
         }
 
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
-            //save();
+            exersiceData.save();
         }
 
         private void Setting_Clicked(object sender, EventArgs e)
@@ -26,6 +28,7 @@
         private void Log_Clicked(object sender, EventArgs e)
         {
             logEntry.Text = string.Empty;
+            UpdateAll();
         }
 
         #region Update Minute Value Counters
@@ -39,6 +42,7 @@
         private void UpdateTotalMinutesDoneToday()
         {
             //updates number of minutes of exercise done today
+            MinutesToday.Text = $"{exersiceData.numMinutesToday} minutes done today";
         }
 
         private void UpdateAverageToCompleteYear()
