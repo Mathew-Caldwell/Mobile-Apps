@@ -28,29 +28,42 @@ namespace MathewCaldwellExerciseTracker
         string fileName = "ExerciseData";
         string content = "";
 
-        public void CalculateAvgMinForRestOfYear()
+        public float CalculateAvgMinForRestOfYear()
         {
+            int difference = DifferenceInDays(new DateTime(2026, 12,31), DateTime.Now);
 
+            int totalMinInYear = 365 * numMinutesPerDay;
+            int numMinRestOfYear = totalMinInYear - numMinutesToday;
+            float avgMinForRestOfYear = numMinRestOfYear / difference;
+            return avgMinForRestOfYear;
+        }       
+
+        public int CalculateTotalNumOfMinShouldHaveDone()
+        {
+            int difference = DifferenceInDays(new DateTime(2026,1,1), DateTime.Now);
+            return difference * numMinutesPerDay;
         }
 
-        public void CalculateTotalNumOfMinShouldHaveDone()
+        public float CalculateAvgMinPerDay()
         {
+            int difference = DifferenceInDays(new DateTime(2026, 1, 1), DateTime.Now);
 
+            float AvgMinDonePerDay = numMinutesToday / difference;
+            return AvgMinDonePerDay;
         }
 
-        public void CalculateAvgMinPerDay()
+        public string ConvertMinToHours(float min)
         {
-
+            Debug.WriteLine(min);
+            TimeSpan time = TimeSpan.FromMinutes(min);
+            string formattedTime = $"{(double)time.TotalHours}";
+            return formattedTime;
         }
 
-        public void ConvertMinToHours()
+        public void IncrementMinDone(int newMinutesDone)
         {
-
-        }
-
-        public void IncrementMinDoneToday()
-        {
-
+            numMinutesToday += newMinutesDone;
+            numMinutesTotal += newMinutesDone;
         }
 
         public void IsNewDay()
@@ -62,7 +75,12 @@ namespace MathewCaldwellExerciseTracker
         {
             ResetData();
         }
-        
+
+        public void ResetData()
+        {
+
+        }
+
         public void save()
         {
             content = $"{numMinutesToday},{numMinutesTotal},{numMinutesPerDay},{backgroundColour},{textColour}";
@@ -94,9 +112,13 @@ namespace MathewCaldwellExerciseTracker
             textColour = contentArray[4];
         }
 
-        public void ResetData()
+        int DifferenceInDays(DateTime otherDate, DateTime now)
         {
+            TimeSpan difference = otherDate - now;
 
+            int daysBetween = Math.Abs(difference.Days);
+
+            return daysBetween;
         }
     }
 }

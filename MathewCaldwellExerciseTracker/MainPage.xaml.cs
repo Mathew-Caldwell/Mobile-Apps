@@ -27,6 +27,9 @@
 
         private void Log_Clicked(object sender, EventArgs e)
         {
+            int minDone = int.Parse(logEntry.Text);
+            exersiceData.IncrementMinDone(minDone);
+            
             logEntry.Text = string.Empty;
             UpdateAll();
         }
@@ -36,8 +39,7 @@
         {
             UpdateTotalMinutesDoneToday();
             UpdateAverageToCompleteYear();
-            UpdateTotalAmountDone();
-            UpdateTotalAmountShouldHaveDone();
+            UpdateTotalAmountDoneAndTotalShouldHaveDone();
         }
         private void UpdateTotalMinutesDoneToday()
         {
@@ -48,16 +50,17 @@
         private void UpdateAverageToCompleteYear()
         {
             //updates how many minutes of exercise user has to do each day for rest of year to hit goal
+            NumMinForRestOfYear.Text = $"Need to do {exersiceData.ConvertMinToHours(exersiceData.CalculateAvgMinForRestOfYear())} hours of exercise per day";
+
         }
 
-        private void UpdateTotalAmountDone()
+        private void UpdateTotalAmountDoneAndTotalShouldHaveDone()
         {
             //updates the total amount of minutes of exersice the user has done then converts into hours
-        }
-
-        private void UpdateTotalAmountShouldHaveDone()
-        {
             //updates the total amount of minutes the user should have done then converts into hours
+
+            TotalAndRequiredExercise.Text = $"Total exercise time: {exersiceData.ConvertMinToHours(exersiceData.numMinutesTotal)} hours." +
+                $" You should have done: {exersiceData.ConvertMinToHours(exersiceData.CalculateTotalNumOfMinShouldHaveDone())} hours";
         }
         #endregion
 
