@@ -1,3 +1,4 @@
+using Microsoft.Maui.Graphics;
 namespace MathewCaldwellExerciseTracker
 {
     public partial class SettingsPage : ContentPage
@@ -39,6 +40,16 @@ namespace MathewCaldwellExerciseTracker
             exerciseData.save();
             exerciseData.load();
             changeMinPerDay.Value = exerciseData.numMinutesPerDay;
+        }
+
+        void ChangeBackgroundColour(string backgroundColour)
+        {
+            
+        }
+
+        void ChangeTextColour(string textColour)
+        {
+
         }
     }
 }

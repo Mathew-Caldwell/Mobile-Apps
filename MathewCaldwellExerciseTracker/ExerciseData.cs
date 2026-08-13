@@ -22,8 +22,8 @@ namespace MathewCaldwellExerciseTracker
         public int numMinutesTotal;
         public int numMinutesPerDay;
 
-        public string backgroundColour = "white";
-        public string textColour = "black";
+        public string backgroundColour = "White";
+        public string textColour = "Black";
 
         string fileName = "ExerciseData";
         string content = "";
@@ -81,8 +81,8 @@ namespace MathewCaldwellExerciseTracker
             numMinutesToday = 0;
             numMinutesTotal = 0;
             numMinutesPerDay = 30;
-            backgroundColour = "white";
-            textColour = "black";
+            backgroundColour = "White";
+            textColour = "Black";
         }
 
         public void save()
@@ -105,7 +105,7 @@ namespace MathewCaldwellExerciseTracker
             }
             catch (Exception ex)
             {
-                content = "0,0,30,white,black";
+                content = "0,0,30,White,Black";
             }
 
             string[] contentArray = content.Split(",");
