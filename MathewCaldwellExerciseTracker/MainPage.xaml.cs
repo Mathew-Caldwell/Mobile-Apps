@@ -72,7 +72,12 @@ namespace MathewCaldwellExerciseTracker
         private void UpdateAverageToCompleteYear()
         {
             //updates how many minutes of exercise user has to do each day for rest of year to hit goal
-            NumMinForRestOfYear.Text = $"Need to do {exersiceData.ConvertMinToHours(exersiceData.CalculateAvgMinForRestOfYear())} hours of exercise per day";
+            float avgForRest = float.Parse(exersiceData.ConvertMinToHours(exersiceData.CalculateAvgMinForRestOfYear()));
+            if(avgForRest < 0)
+            {
+                avgForRest = 0.0f;
+            }
+            NumMinForRestOfYear.Text = $"Need to do {avgForRest} hours of exercise per day";
 
         }
 
