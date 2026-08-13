@@ -56,7 +56,7 @@ namespace MathewCaldwellExerciseTracker
         {
             Debug.WriteLine(min);
             TimeSpan time = TimeSpan.FromMinutes(min);
-            string formattedTime = $"{(double)time.TotalHours}";
+            string formattedTime = $"{Math.Round((double)time.TotalHours, 2)}";
             return formattedTime;
         }
 
@@ -78,7 +78,11 @@ namespace MathewCaldwellExerciseTracker
 
         public void ResetData()
         {
-
+            numMinutesToday = 0;
+            numMinutesTotal = 0;
+            numMinutesPerDay = 30;
+            backgroundColour = "white";
+            textColour = "black";
         }
 
         public void save()

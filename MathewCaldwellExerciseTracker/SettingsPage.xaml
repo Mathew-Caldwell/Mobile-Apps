@@ -11,7 +11,7 @@
                 <Slider Minimum="5" Maximum="60" ValueChanged="Slider_ValueChanged" x:Name="changeMinPerDay" WidthRequest="500"/>
                 <Label Text="30" x:Name="numberOfMinutesPerDayLabel"/>
             </HorizontalStackLayout>
-            <Button Text="Reset Data" BackgroundColor="Red" TextColor="Black"/>
+            <Button Text="Reset Data" BackgroundColor="Red" TextColor="Black" Clicked="RestedData_Clicked"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

@@ -1,4 +1,6 @@
-﻿namespace MathewCaldwellExerciseTracker
+﻿using System.Windows;
+
+namespace MathewCaldwellExerciseTracker
 {
     
     
@@ -6,6 +8,7 @@
     {
         ExerciseData exersiceData = new ExerciseData();
 
+        #region Initialising/ loading and saving
         public MainPage()
         {
             InitializeComponent();
@@ -13,6 +16,15 @@
             UpdateAll();
         }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            exersiceData.load();
+            UpdateAll();
+        }
+        #endregion
+
+        #region Inputs
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
@@ -33,6 +45,7 @@
             logEntry.Text = string.Empty;
             UpdateAll();
         }
+        #endregion
 
         #region Update Minute Value Counters
         private void UpdateAll()
@@ -45,6 +58,15 @@
         {
             //updates number of minutes of exercise done today
             MinutesToday.Text = $"{exersiceData.numMinutesToday} minutes done today";
+
+            if(exersiceData.numMinutesToday < exersiceData.numMinutesPerDay)
+            {
+                MinutesToday.TextColor = Colors.Red;
+            }
+            else
+            {
+                MinutesToday.TextColor = Colors.Green;
+            }
         }
 
         private void UpdateAverageToCompleteYear()
