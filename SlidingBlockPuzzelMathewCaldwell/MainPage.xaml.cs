@@ -1,24 +1,33 @@
-﻿namespace SlidingBlockPuzzelMathewCaldwell
+﻿using System.Diagnostics;
+
+namespace SlidingBlockPuzzelMathewCaldwell
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
 
         public MainPage()
         {
             InitializeComponent();
         }
 
-        private void OnCounterClicked(object? sender, EventArgs e)
+        private void SwipeLeft(object sender, SwipedEventArgs e)
         {
-            count++;
+            Debug.WriteLine($"Left {sender} {e}");
+        }
 
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
+        private void SwipeRight(object sender, SwipedEventArgs e)
+        {
+            Debug.WriteLine("Right");
+        }
 
-            SemanticScreenReader.Announce(CounterBtn.Text);
+        private void SwipeUp(object sender, SwipedEventArgs e)
+        {
+            Debug.WriteLine("Up");
+        }
+
+        private void SwipeDown(object sender, SwipedEventArgs e)
+        {
+            Debug.WriteLine("Down");
         }
     }
 }
