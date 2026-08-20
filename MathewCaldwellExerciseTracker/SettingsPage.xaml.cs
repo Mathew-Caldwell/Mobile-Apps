@@ -34,6 +34,11 @@ namespace MathewCaldwellExerciseTracker
             exerciseData.numMinutesPerDay = (int)changeMinPerDay.Value;
         }
 
+        private void BackgroundColourChange_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
         private void RestedData_Clicked(object sender, EventArgs e)
         {
             exerciseData.ResetData();
@@ -44,12 +49,29 @@ namespace MathewCaldwellExerciseTracker
 
         void ChangeBackgroundColour(string backgroundColour)
         {
-            
+            if(backgroundColour == "white")
+            {
+                BackgroundColor = Colors.White;
+            }
+            else if (backgroundColour == "black")
+            {
+                BackgroundColor = Colors.Black;
+            }
+            else if(backgroundColour == "red")
+            {
+                BackgroundColor = Colors.Red;
+            }
+            else if(backgroundColour == "purple")
+            {
+                BackgroundColor = Colors.Purple;
+            }
         }
 
         void ChangeTextColour(string textColour)
         {
 
         }
+
+        
     }
 }

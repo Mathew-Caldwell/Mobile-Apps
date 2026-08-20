@@ -7,10 +7,18 @@
     
     <ScrollView>
         <VerticalStackLayout>
-            <Button Text="back" Clicked="Back_Clicked"/>
+            <Button Text="back" Clicked="Back_Clicked" x:Name="BackButton"/>
             <HorizontalStackLayout>
                 <Slider Minimum="5" Maximum="60" ValueChanged="Slider_ValueChanged" x:Name="changeMinPerDay" WidthRequest="500"/>
                 <Label Text="30" x:Name="numberOfMinutesPerDayLabel"/>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout>
+                <Button BackgroundColor="White" x:Name="WhiteButton" Clicked="BackgroundColourChange_Clicked"/>
+                <Button BackgroundColor="Black" x:Name="WhiteButton" Clicked="BackgroundColourChange_Clicked"/>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout>
+                <Button BackgroundColor="Red" x:Name="WhiteButton" Clicked="BackgroundColourChange_Clicked"/>
+                <Button BackgroundColor="Purple" x:Name="WhiteButton" Clicked="BackgroundColourChange_Clicked"/>
             </HorizontalStackLayout>
             <Button Text="Reset Data" BackgroundColor="Red" TextColor="Black" Clicked="RestedData_Clicked"/>
         </VerticalStackLayout>
