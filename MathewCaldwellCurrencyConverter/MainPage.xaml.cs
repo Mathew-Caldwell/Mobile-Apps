@@ -46,5 +46,9 @@ namespace MathewCaldwellCurrencyConverter
             
         }
 
+        private void bt7_Clicked(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -4,19 +4,42 @@
              x:Class="MathewCaldwellCurrencyConverter.MainPage">
 
     <ScrollView>
-        <VerticalStackLayout>
-            <CollectionView x:Name="Currencies">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <VerticalStackLayout>
-                                <Label Text="{Binding currencyList}"/>
-                            </VerticalStackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </VerticalStackLayout>
-    </ScrollView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
 
+            <VerticalStackLayout Grid.Column="0" Grid.Row="1">
+                <HorizontalStackLayout HorizontalOptions="Center">
+                    <Button Text="7" x:Name="bt7" Clicked="bt7_Clicked"/>
+                    <Button Text="8" x:Name="bt8"/>
+                    <Button Text="9" x:Name="bt9"/>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout HorizontalOptions="Center">
+                    <Button Text="4" x:Name="bt4"/>
+                    <Button Text="5" x:Name="bt5"/>
+                    <Button Text="6" x:Name="bt6"/>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout HorizontalOptions="Center">
+                    <Button Text="1" x:Name="bt1"/>
+                    <Button Text="2" x:Name="bt2"/>
+                    <Button Text="3" x:Name="bt3"/>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout HorizontalOptions="Center">
+                    <Button Text="0" x:Name="bt0"/>
+                    <Button Text="." x:Name="btpoint"/>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+            <CollectionView x:Name="Currencies" Grid.Column="1" Grid.Row="1" ItemsSource="{Binding currencyList}"/>
+            <Label x:Name="Output" Text="$XX.XX AUD = $XX.XX AUD" Grid.Column="2" Grid.Row="1"/>
+            <Button Text="Clear" Grid.Column="1" Grid.Row="2"/>
+        </Grid>
+    </ScrollView>
 </ContentPage>
