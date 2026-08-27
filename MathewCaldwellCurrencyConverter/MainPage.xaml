@@ -17,29 +17,30 @@
             </Grid.ColumnDefinitions>
 
             <VerticalStackLayout Grid.Column="0" Grid.Row="1">
+                <Label HorizontalOptions="Center" x:Name="Input" Text="0.00"/>
                 <HorizontalStackLayout HorizontalOptions="Center">
-                    <Button Text="7" x:Name="bt7" Clicked="bt7_Clicked"/>
-                    <Button Text="8" x:Name="bt8"/>
-                    <Button Text="9" x:Name="bt9"/>
+                    <Button Text="7" x:Name="bt7" Clicked="NumberPadClicked"/>
+                    <Button Text="8" x:Name="bt8" Clicked="NumberPadClicked"/>
+                    <Button Text="9" x:Name="bt9" Clicked="NumberPadClicked"/>
                 </HorizontalStackLayout>
                 <HorizontalStackLayout HorizontalOptions="Center">
-                    <Button Text="4" x:Name="bt4"/>
-                    <Button Text="5" x:Name="bt5"/>
-                    <Button Text="6" x:Name="bt6"/>
+                    <Button Text="4" x:Name="bt4" Clicked="NumberPadClicked"/>
+                    <Button Text="5" x:Name="bt5" Clicked="NumberPadClicked"/>
+                    <Button Text="6" x:Name="bt6" Clicked="NumberPadClicked"/>
                 </HorizontalStackLayout>
                 <HorizontalStackLayout HorizontalOptions="Center">
-                    <Button Text="1" x:Name="bt1"/>
-                    <Button Text="2" x:Name="bt2"/>
-                    <Button Text="3" x:Name="bt3"/>
+                    <Button Text="1" x:Name="bt1" Clicked="NumberPadClicked"/>
+                    <Button Text="2" x:Name="bt2" Clicked="NumberPadClicked"/>
+                    <Button Text="3" x:Name="bt3" Clicked="NumberPadClicked"/>
                 </HorizontalStackLayout>
                 <HorizontalStackLayout HorizontalOptions="Center">
-                    <Button Text="0" x:Name="bt0"/>
-                    <Button Text="." x:Name="btpoint"/>
+                    <Button Text="0" x:Name="bt0" Clicked="NumberPadClicked"/>
+                    <Button Text="." x:Name="btpoint" Clicked="NumberPadClicked"/>
                 </HorizontalStackLayout>
             </VerticalStackLayout>
-            <CollectionView x:Name="Currencies" Grid.Column="1" Grid.Row="1" ItemsSource="{Binding currencyList}"/>
+            <CollectionView x:Name="Currencies" Grid.Column="1" Grid.Row="1" ItemsSource="{Binding currencyList}" SelectionMode="Single" SelectionChanged="Currencies_SelectionChanged"/>
             <Label x:Name="Output" Text="$XX.XX AUD = $XX.XX AUD" Grid.Column="2" Grid.Row="1"/>
-            <Button Text="Clear" Grid.Column="1" Grid.Row="2"/>
+            <Button Text="Clear" Grid.Column="1" Grid.Row="2" Clicked="Button_Clicked"/>
         </Grid>
     </ScrollView>
 </ContentPage>
