@@ -12,7 +12,8 @@ namespace SlidingBlockPuzzelMathewCaldwell
 
         private void SwipeLeft(object sender, SwipedEventArgs e)
         {
-            Debug.WriteLine($"Left {sender} {e}");
+            Image image = (Image)sender;  
+            Debug.WriteLine($"Left");
         }
 
         private void SwipeRight(object sender, SwipedEventArgs e)
