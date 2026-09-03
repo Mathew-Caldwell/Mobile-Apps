@@ -8,51 +8,54 @@ namespace MathewCaldwellCurrencyConverter
 {
     public partial class MainPage : ContentPage
     {
-        public List<string> currencyList = new List<string>();
-        public string number;
-        CurrencyJSONRootObject currency {  get; set; }
+        public List<string> currencyList = new List<string>(); // list of all types of currency
+
+        string number; // string of the current input
+        CurrencyJSONRootObject currency {  get; set; } // class wide accessable version of the deserialised json
+
+        string APILink = "https://openexchangerates.org/api/latest.json?app_id=744c0e65d9ae400eae78bcbf1151ff54";
 
         
         public MainPage()
         {
             InitializeComponent();
-            Test();
+
+            GetAPI();
+
+            // looks through the JsonConvert class and adds all the fields under rates as a string to a list
             List<string> fieldNames = typeof(Rates).GetProperties(BindingFlags.Public | BindingFlags.Instance).Select(field => field.Name).ToList();
+
             foreach(string field in fieldNames)
             {
                 currencyList.Add(field);
             }
+
             Currencies.ItemsSource = currencyList;
         }
 
+        /// <summary>
+        /// Fetches the exchange rate API
+        /// </summary>
         public async void GetAPI()
         {
+            var client = new HttpClient();
+            var responce = await client.GetAsync(APILink);
 
+            while(responce.StatusCode != System.Net.HttpStatusCode.OK || responce.Content == null)
+            {
+                await DisplayAlertAsync("Error", string.Format("Connection failed attempting reconnection", responce.StatusCode), "OK");
+                responce = await client.GetAsync(APILink);
+            }
+
+            var responceString = await responce.Content.ReadAsStringAsync();
+            currency = JsonConvert.DeserializeObject<CurrencyJSONRootObject>(responceString);
         }
 
-        void Test()
-        {
-            var jsonString = @"{" +
-                "\"disclaimer\": \"Usage subject to terms: https://openexchangerates.org/terms\"," +
-                "\"license\": \"https://openexchangerates.org/license\"," +
-                "\"timestamp\": 1722506400," +
-                "\"base\": \"USD\"," +
-                "\"rates\": {" +
-                    "\"AUD\": 1.532673," +
-                    "\"CAD\": 1.38327," +
-                    "\"EUR\": 0.927796," +
-                    "\"GBP\": 0.784006," +
-                    "\"IDR\": 16267.05072," +
-                    "\"INR\": 83.725572," +
-                    "\"JPY\": 149.95677778," +
-                    "\"NZD\": 1.683006," +
-                    "\"USD\": 1" +
-                "}" +
-            "}";
-            currency = JsonConvert.DeserializeObject<CurrencyJSONRootObject>(jsonString);
-            
-        }
-
+        /// <summary>
+        /// Number pad input system
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NumberPadClicked(object sender, EventArgs e)
         {
             Button button = (Button)sender;
@@ -98,24 +101,46 @@ namespace MathewCaldwellCurrencyConverter
             Input.Text = number;
         }
 
+        /// <summary>
+        /// Converts AUD input to selected currency 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Currencies_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string currencySelected = (string)e.CurrentSelection.FirstOrDefault();
-            PropertyInfo property = currency.rates.GetType().GetProperty(currencySelected);
-            float AUD = currency.rates.AUD;
+
+            PropertyInfo property;
+            float AUD = 1.395f;
+            float exchange = 1;
+
+            if (currency != null)
+            {
+                property = currency.rates.GetType().GetProperty(currencySelected);
+                AUD = currency.rates.AUD;
+                exchange = (float)Convert.ToSingle(property.GetValue(currency.rates)); // getting conversion rate of selected currency
+            }
+
+            
             if(this.number == null)
             {
                 this.number = "1";
             }
+
             float number = float.Parse(this.number);
-            float AUDtoUSD = number / AUD;
-            float exchange = (float)Convert.ToSingle(property.GetValue(currency.rates));
+            float AUDtoUSD = number / AUD;            
             float toWantedCurrency = (float)Math.Round(AUDtoUSD * exchange, 2);
+
             Output.Text = $"${number}AUD = ${toWantedCurrency}{currencySelected}";
 
             
         }
 
+        /// <summary>
+        /// Resets all inputs to start value
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button_Clicked(object sender, EventArgs e)
         {
             this.number = null;
