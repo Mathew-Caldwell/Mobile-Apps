@@ -5,7 +5,7 @@
 
     <ScrollView>
         <VerticalStackLayout HorizontalOptions="Center">
-            <Grid>
+            <Grid x:Name="ImageGrid">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="250"/>
                     <RowDefinition Height="250"/>
@@ -90,7 +90,7 @@
                     </Image.GestureRecognizers>
                 </Image>
             </Grid>
-            <Button Text="Reset" BackgroundColor="ForestGreen"/>
+            <Button Text="Reset" BackgroundColor="ForestGreen" Clicked="Reset_Clicked"/>
         </VerticalStackLayout>
     </ScrollView>
 
