@@ -14,6 +14,8 @@ namespace MathewCaldwellExerciseTracker
             InitializeComponent();
             exersiceData.load();
             UpdateAll();
+            ChangeBackgroundColour(exersiceData.backgroundColour);
+            ChangeTextColour(exersiceData.textColour);
         }
 
         protected override void OnAppearing()
@@ -21,6 +23,9 @@ namespace MathewCaldwellExerciseTracker
             base.OnAppearing();
             exersiceData.load();
             UpdateAll();
+            ChangeBackgroundColour(exersiceData.backgroundColour);
+            ChangeTextColour(exersiceData.textColour);
+
         }
         #endregion
 
@@ -88,6 +93,65 @@ namespace MathewCaldwellExerciseTracker
 
             TotalAndRequiredExercise.Text = $"Total exercise time: {exersiceData.ConvertMinToHours(exersiceData.numMinutesTotal)} hours." +
                 $" You should have done: {exersiceData.ConvertMinToHours(exersiceData.CalculateTotalNumOfMinShouldHaveDone())} hours";
+        }
+        #endregion
+
+        #region Colours
+
+        void ChangeBackgroundColour(string backgroundColour)
+        {
+            if (backgroundColour == "WhiteBG")
+            {
+                BackgroundColor = Colors.White;
+            }
+            else if (backgroundColour == "BlackBG")
+            {
+                BackgroundColor = Colors.Black;
+            }
+            else if (backgroundColour == "RedBG")
+            {
+                BackgroundColor = Colors.Red;
+            }
+            else if (backgroundColour == "PurpleBG")
+            {
+                BackgroundColor = Colors.Purple;
+            }
+        }
+
+        void ChangeTextColour(string textColour)
+        {
+            if (textColour == "WhiteTC")
+            {
+                settingButton.TextColor = Colors.White;
+                logEntry.TextColor = Colors.White;
+                logButton.TextColor = Colors.White;
+                NumMinForRestOfYear.TextColor = Colors.White;
+                TotalAndRequiredExercise.TextColor = Colors.White;
+            }
+            else if (textColour == "BlackTC")
+            {
+                settingButton.TextColor = Colors.Black;
+                logEntry.TextColor = Colors.Black;
+                logButton.TextColor = Colors.Black;
+                NumMinForRestOfYear.TextColor = Colors.Black;
+                TotalAndRequiredExercise.TextColor = Colors.Black;
+            }
+            else if (textColour == "RedTC")
+            {
+                settingButton.TextColor = Colors.Red;
+                logEntry.TextColor = Colors.Red;
+                logButton.TextColor = Colors.Red;
+                NumMinForRestOfYear.TextColor = Colors.Red;
+                TotalAndRequiredExercise.TextColor = Colors.Red;
+            }
+            else if (textColour == "PurpleTC")
+            {
+                settingButton.TextColor = Colors.Purple;
+                logEntry.TextColor = Colors.Purple;
+                logButton.TextColor = Colors.Purple;
+                NumMinForRestOfYear.TextColor = Colors.Purple;
+                TotalAndRequiredExercise.TextColor = Colors.Purple;
+            }
         }
         #endregion
 

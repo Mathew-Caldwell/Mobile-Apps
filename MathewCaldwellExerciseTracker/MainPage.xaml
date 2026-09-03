@@ -1,14 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MathewCaldwellExerciseTracker.MainPage">
+             x:Class="MathewCaldwellExerciseTracker.MainPage"
+             BackgroundColor="White">
 
     <ScrollView>
         <VerticalStackLayout>
-            <Button Text="Settings" Clicked="Setting_Clicked"/>
+            <Button Text="Settings" Clicked="Setting_Clicked" x:Name="settingButton"/>
             <Label Text="X minutes today" x:Name="MinutesToday"/>
             <Entry Placeholder="log number of minutes" x:Name="logEntry"/>
-            <Button Text="log" Clicked="Log_Clicked"/>
+            <Button Text="log" Clicked="Log_Clicked" x:Name="logButton"/>
             <Label Text="Need to do X min of exercise per day" x:Name="NumMinForRestOfYear"/>
             <Label Text="Total exercise time: XX:XX Required exercise time: YY:YY" x:Name="TotalAndRequiredExercise"/>
         </VerticalStackLayout>

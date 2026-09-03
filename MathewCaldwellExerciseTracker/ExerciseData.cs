@@ -22,11 +22,14 @@ namespace MathewCaldwellExerciseTracker
         public int numMinutesTotal;
         public int numMinutesPerDay;
 
-        public string backgroundColour = "White";
-        public string textColour = "Black";
+        public string backgroundColour = "WhiteBG";
+        public string textColour = "BlackTC";
 
         string fileName = "ExerciseData";
         string content = "";
+
+        int year;
+        int hour;
 
         public float CalculateAvgMinForRestOfYear()
         {
@@ -54,7 +57,6 @@ namespace MathewCaldwellExerciseTracker
 
         public string ConvertMinToHours(float min)
         {
-            Debug.WriteLine(min);
             TimeSpan time = TimeSpan.FromMinutes(min);
             string formattedTime = $"{Math.Round((double)time.TotalHours, 2)}";
             return formattedTime;
@@ -66,14 +68,22 @@ namespace MathewCaldwellExerciseTracker
             numMinutesTotal += newMinutesDone;
         }
 
-        public void IsNewDay()
+        void IsNewDay(int hour)
         {
-
+            int currentHour = DateTime.Now.Hour;
+            if(currentHour < hour)
+            {
+                numMinutesToday = 0;
+            }
         }
 
-        public void IsNewYear()
+        void IsNewYear(int year)
         {
-            ResetData();
+            int currentYear = DateTime.Now.Year;
+            if (currentYear > year)
+            {
+                ResetData();
+            }
         }
 
         public void ResetData()
@@ -81,13 +91,17 @@ namespace MathewCaldwellExerciseTracker
             numMinutesToday = 0;
             numMinutesTotal = 0;
             numMinutesPerDay = 30;
-            backgroundColour = "White";
-            textColour = "Black";
+            backgroundColour = "WhiteBG";
+            textColour = "BlackTC";
         }
 
         public void save()
         {
-            content = $"{numMinutesToday},{numMinutesTotal},{numMinutesPerDay},{backgroundColour},{textColour}";
+            DateTime now = DateTime.Now;
+            year = now.Year;
+            hour = now.Hour;
+            
+            content = $"{numMinutesToday},{numMinutesTotal},{numMinutesPerDay},{backgroundColour},{textColour},{hour},{year}";
             
             var localFolder = FileSystem.Current.AppDataDirectory;
             var filePath = Path.Combine(localFolder, fileName);
@@ -105,7 +119,7 @@ namespace MathewCaldwellExerciseTracker
             }
             catch (Exception ex)
             {
-                content = "0,0,30,White,Black";
+                content = $"0,0,30,WhiteBG,BlackTC,{DateTime.Now.Hour}, {DateTime.Now.Year}";
             }
 
             string[] contentArray = content.Split(",");
@@ -114,6 +128,11 @@ namespace MathewCaldwellExerciseTracker
             numMinutesPerDay = int.Parse(contentArray[2]);
             backgroundColour = contentArray[3];
             textColour = contentArray[4];
+            hour = int.Parse(contentArray[5]);
+            year = int.Parse(contentArray[6]);
+
+            IsNewDay(hour);
+            IsNewYear(year);
         }
 
         int DifferenceInDays(DateTime otherDate, DateTime now)
