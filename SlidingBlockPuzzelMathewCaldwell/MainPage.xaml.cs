@@ -46,7 +46,6 @@ namespace SlidingBlockPuzzelMathewCaldwell
             white.Source = ImageSource.FromFile("white_background.png");
             if (!IsWhitePNG(image, white))
             {
-                Debug.WriteLine("b");
                 return;
             }
 
@@ -74,6 +73,15 @@ namespace SlidingBlockPuzzelMathewCaldwell
             Image nextImage = (Image)gridArray[nextImageIndex];
             image.Source = nextImage.Source;
             nextImage.Source = ImageSource.FromFile("white_background.png");
+
+            if (HasWon())
+            {
+                BackgroundColor = Colors.Green;
+            }
+            else
+            {
+                BackgroundColor = Colors.White;
+            }
         }
 
         void Randomize()
@@ -116,6 +124,28 @@ namespace SlidingBlockPuzzelMathewCaldwell
             if(image1.Source is FileImageSource file1 &&  image2.Source is FileImageSource file2)
             {
                 return file1.File == file2.File;
+            }
+            return false;
+        }
+
+        bool HasWon()
+        {
+            var gridChildren = ImageGrid.Children;
+            int numCorrect = 0;
+            string[] correctLayout = { "white_background.png", "top_middle.png", "top_right.png", "centre_left.png", "centre_middle.png", "centre_right.png", "bottom_left.png", "bottom_middle.png", "bottom_right.png" };
+            for(int i = 0; i < 9; i++)
+            {
+                Image image = (Image)gridChildren[i];
+                Image temp = new Image();
+                temp.Source = correctLayout[i];
+                if(IsWhitePNG(image, temp))
+                {
+                    numCorrect++;
+                }
+            }
+            if(numCorrect == 9)
+            {
+                return true;
             }
             return false;
         }
